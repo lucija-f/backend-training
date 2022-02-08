@@ -9,17 +9,16 @@ const knex = require("knex")({
   },
 });
 
-async function getFriends(ctx) {
-  ctx.body = await knex.select("*").from("friends");
+function getAllFriends() {
+  return knex.select("*").from("friends");
 }
 
-async function postFriend(ctx) {
-  console.log(ctx.request.body);
-  ctx.body = await knex("friends").insert({
-    first_name: ctx.request.body.first_name,
-    last_name: ctx.request.body.last_name,
-    nickname: ctx.request.body.nickname,
+function postOneFriend(data) {
+  return knex("friends").insert({
+    first_name: data.first_name,
+    last_name: data.last_name,
+    nickname: data.nickname,
   });
 }
 
-module.exports = getFriends;
+module.exports = { getAllFriends, postOneFriend };
