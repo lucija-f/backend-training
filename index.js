@@ -8,6 +8,4 @@ const app = new Koa();
 const _ = router(); //Instantiate the router
 _.use(require("./route/friends.js").routes());
 
-app.use(parser());
-app.use(_.routes());
-app.listen(3000);
+app.use(parser()).use(_.routes()).listen(3000);
